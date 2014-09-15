@@ -1,4 +1,4 @@
-from zope.interface import implements
+from zope.interface import implementer
 
 from twisted.names import client, dns, server
 from twisted.python import usage
@@ -48,8 +48,8 @@ class Options(usage.Options):
         self["networks"].append(network)
 
 
+@implementer(IServiceMaker, IPlugin)
 class DivergentServiceMaker(object):
-    implements(IServiceMaker, IPlugin)
     tapname = "divergent"
     description = (
         "Divergent is a DNS server which masquerades internal cloud IPs as "
